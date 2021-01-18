@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .container {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+
+        }
+
+        .card {
+            border: 1px solid black;
+            color: black;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            margin-bottom: 30px;
+            margin-right: 30px;
+        }
+
+        .title {
+            font-size: 30px;
+            font-weight: bold;
+            border: 1px solid black;
+            word-wrap: break-word;
+        }
+
+        .time {
+            border: 1px solid black;
+        }
+
+        .card img {
+            width: 100%;
+            height: 300px;
+        }
+
+        #formBtn {
+            cursor: pointer;
+            width: 150px;
+            padding: 25px 0;
+            background-color: gray;
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 留言 -->
+    <form action="https://ajax-lesson.digipack-develop.com/news" method="post" style="margin-bottom: 100px;">
+        <div class="form-group">
+            <label for="">標題</label>
+            <input id="title" name="title" type="text" required>
+        </div>
+        <div class="form-group">
+            <label for="">時間</label>
+            <input id="date" name="date" type="datetime-local" required>
+        </div>
+        <div class="form-group">
+            <label for="">內容</label>
+            <textarea id="content" name="content" id="" cols="30" rows="10" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="">圖片</label>
+            <input id="image_url" name="image_url" type="text" required>
+        </div>
+        <div class="form-group">
+            <label for="">超連結</label>
+            <input id="href" name="href" type="text">
+        </div>
+        <div class="form-group">
+            <button id="formBtn" type="button">輸入</button>
+        </div>
+    </form>
+
+
+    <div class="container">
+        <!-- <a href="" class="card">
+            <div class="title">我是標題1</div>
+            <div class="time">2020-12-22 13:28</div>
+            <img src="https://miro.medium.com/max/1134/1*jh8J9wJVzbcsdyscc6WsfQ.jpeg" alt="">
+            <div class="content">
+                我是內容1
+                我是內容1
+                我是內容1
+                我是內容1
+                我是內容1
+            </div>
+        </a>
+
+        <a href="" class="card">
+            <div class="title">我是標題2</div>
+            <div class="time">2020-12-22 13:32</div>
+            <img src="https://image1.thenewslens.com/2019/3/0fk2uypny8vipple7qj13r7wojmk61.jpg?h=628&w=1200" alt="">
+            <div class="content">
+                我是內容2
+                我是內容2
+                我是內容2
+                我是內容2
+                我是內容2
+            </div>
+        </a> -->
+
+    </div>
+
+    <script>
+        var container = document.querySelector('.container')
+        // console.log(container);
+
+        // var href = ''
+        // var title = '我是標題3'
+        // var time = '2020-12-22 13:55'
+        // var content = '安安你好我是內容3安安你好我是內容3安安你好我是內容3安安你好我是內容3'
+        // var img = 'https://i2.wp.com/www.spaceadvisor.com/blog/wp-content/uploads/2018/08/animal-corgi-dog-58997.jpg?fit=2048%2C1365&ssl=1'
+
+        // container.innerHTML += `
+        //                 <a href="${href}" class="card">
+        //                     <div class="title">${title}</div>
+        //                     <div class="time">${time}</div>
+        //                     <img src="${img}"alt="">
+        //                     <div class="content">
+        //                         ${content}
+        //                     </div>
+        //                 </a>
+        // `
+
+        show();//顯示資料出來
+
+
+        //顯示資料出來
+        function show() {
+            container.innerHTML = ''
+            //發送一個GET請求
+            var data = fetch('https://ajax-lesson.digipack-develop.com/news?limit=30')
+                .then(function (response) {
+                    //將回傳資料中的JSON資料取出
+                    return response.json();
+                })
+                .then(function (myJson) {
+                    //把資料印出來
+                    console.log(myJson);
+
+                    myJson.forEach(element => {
+                        container.innerHTML += `
+                                <a href="${element.href}" class="card">
+                                    <div class="title">${element.title}</div>
+                                    <div class="time">${element.date}</div>
+                                    <img src="${element.image_url}"alt="">
+                                    <div class="content">
+                                        ${element.content}
+                                    </div>
+                                </a>
+                `
+                    });
+
+
+                })
+        }
+
+
+
+        //背景送出表單
+        //綁定一個按鈕
+        var formBtn = document.querySelector('#formBtn')
+        formBtn.onclick = function () {
+            //取得表單所有值
+            //title date  content "image_url href"
+            var title = document.querySelector('#title')
+            var date = document.querySelector('#date')
+            var content = document.querySelector('#content')
+            var image_url = document.querySelector('#image_url')
+            var href = document.querySelector('#href')
+
+            // console.log(title.value);
+            // console.log(date.value);
+            // console.log(content.value);
+            // console.log(image_url.value);
+            // console.log(href.value);
+
+            const url = 'https://ajax-lesson.digipack-develop.com/news';
+            // var data = {
+            //     'title': title,
+            //     'date': date,
+            //     'content': content,
+            //     'image_url': image_url,
+            //     'href': href
+            // };
+
+
+            // console.log(data.title);
+            // console.log(data.date);
+            // console.log(data.content);
+            // console.log(data.image_url);
+            // console.log(data.href);
+            var formData = new FormData();
+            formData.append('title', title.value);
+            formData.append('date', date.value);
+            formData.append('content', content.value);
+            formData.append('image_url', image_url.value);
+            formData.append('href', href.value);
+
+            //fetch(網址,其他參數)
+            fetch(url, {
+                method: 'POST', // or 'PUT'
+                body: formData, // data can be `string` or {object}!
+            }).then(res => res.text())
+                .catch(error => console.error('錯誤:', error))
+                .then(function (response) {
+                    console.log('結果:', response)
+                    
+                    console.log(formData);
+
+                    title.value = ""
+                    date.vaue = ""
+                    content.value = ""
+                    image_url.value = ""
+                    href.value = ""
+                    show();
+                });
+
+        }
+
+
+
+    </script>
+</body>
+
+</html>
