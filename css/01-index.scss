@@ -1,0 +1,63 @@
+@import "variable";
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+main{
+    width: 100%;
+    .above{
+        width: 100%;
+        position: relative;
+        .index_photo{
+            width: 100%;
+            opacity: 70%;
+            img{
+                width: 100%;
+                filter:brightness(50%);
+            }
+        }
+        .logo{
+            width: 10%; 
+            position: absolute;
+            top:35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+
+        }
+        .logo_horizontal{
+            width: 25%;
+            position: absolute;
+            top:51%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+           
+        }
+        .logo_horizontal_en{
+            width: 24%;
+            position: absolute;
+            top:59%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+        }
+        .text{
+            position: absolute;
+            bottom: 5%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color:white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+    }
+    .below{
+        width: 90%;
+       position: absolute;
+       right: 0;
+    }
+}
