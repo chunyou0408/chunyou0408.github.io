@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
-<body onload="myFunction()" style="margin:0;">
+<body onload="opening()">
     <div id="loader"></div>
     <div style="display:none;" id="myDiv" class="animate-bottom">
         <header id="header" class="">
@@ -65,40 +65,37 @@
                 </div>
                 <div class="row">
                     <div class="title col-12" style="text-align: center;">
-                        <h1>我的技能</h1>
-                        <p>It is a long established fact that a reader will be distracted by the readable <br>
-                            content of a page when looking at its layout</p>
+                        <h1>技能</h1>
+                        <p>我的技能取向<br>
+                            依照熟練度的百分比</p>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <div class="progress-bar-linear pr-15">
-                                <p class="progress-bar-text">Development</p>
-                                <div class="progress-bar">
-                                    <span data-percent="75" style="transition: width 2s ease 0s; width: 75%;"></span>
-                                </div>
-                            </div>
-                            <div class="progress-bar-linear pr-15">
-                                <p class="progress-bar-text">Cordignator</p>
-                                <div class="progress-bar">
-                                    <span data-percent="90" style="transition: width 2s ease 0s; width: 90%;"></span>
-                                </div>
+                    <div class="progressBox col-12">
+                        <!-- col-md-offset-3 col-md-6 -->
+                        <div class="progress green">
+                            <h3 class="progress-title">HTML</h3>
+                            <div class="progress-bar" style="--w:75%; background:#21da9a;">
+                                <div class="progress-value">75%</div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <div class="progress-bar-linear pl-15">
-                                <p class="progress-bar-text">Web Design</p>
-                                <div class="progress-bar">
-                                    <span data-percent="80" style="transition: width 2s ease 0s; width: 80%;"></span>
-                                </div>
+                        <div class="progress pink">
+                            <h3 class="progress-title">CSS</h3>
+                            <div class="progress-bar" style="--w:65%; background:#ff1170;">
+                                <div class="progress-value">65%</div>
                             </div>
-                            <div class="progress-bar-linear pl-15">
-                                <p class="progress-bar-text">Laravel</p>
-                                <div class="progress-bar">
-                                    <span data-percent="70" style="transition: width 2s ease 0s; width: 70%;"></span>
-                                </div>
+                        </div>
+                        <div class="progress yellow">
+                            <h3 class="progress-title">JavaScript</h3>
+                            <div class="progress-bar" style="--w:85%; background:#ffa900;">
+                                <div class="progress-value">85%</div>
+                            </div>
+                        </div>
+                        <div class="progress blue">
+                            <h3 class="progress-title">Laravel</h3>
+                            <div class="progress-bar" style="--w:55%; background:#294bdc;">
+                                <div class="progress-value">55%</div>
                             </div>
                         </div>
                     </div>
@@ -108,6 +105,14 @@
 
 
         <section>
+
+            <div class="container">
+                <div class="row">
+
+                </div>
+            </div>
+
+
         </section>
     </div>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js">
@@ -115,7 +120,7 @@
         // 讀取畫面
         var myVar;
 
-        function myFunction() {
+        function opening() {
             myVar = setTimeout(showPage, 3000);
         }
 
@@ -126,8 +131,10 @@
         }
         //
 
+
         let btn = document.querySelector('.btnbox');
         let nav = document.querySelector('.navbar-nav');
+
         btn.addEventListener('click', function () {
             nav.classList.toggle('active');
             btn.classList.toggle('active');
@@ -137,6 +144,31 @@
             nav.classList.remove('active');
             btn.classList.remove('active');
         });
+
+        //技能條
+        let progressBox = document.querySelector('.progressBox');
+        window.addEventListener('scroll', scrollProgressBarHandler);
+        function scrollProgressBarHandler() {
+            //設定螢幕最上邊的卷軸高度
+            let windowTop = window.scrollY;
+            //設定螢幕最下邊的卷軸高度
+            let windowBottom = windowTop + window.innerHeight;
+
+            let progressBoxMiddle = progressBox.offsetTop + parseInt(window.getComputedStyle(progressBox).height) / 2;
+
+            //當圖片中間卷軸高度小於螢幕底下卷軸高度時 且螢幕最上的高度比目前圖片底邊高度還小時顯示
+            if (progressBoxMiddle < windowBottom && progressBoxMiddle + parseInt(window.getComputedStyle(progressBox).height) / 2 > windowTop) {
+                progressBox.querySelectorAll('.progress .progress-bar').forEach(bar => {
+                    bar.classList.add('active');
+
+                });
+            } else {
+                progressBox.querySelectorAll('.progress .progress-bar').forEach(bar => {
+                    bar.classList.remove('active');
+                });
+            }
+        }
+        //
     </script>
 
 </body>
