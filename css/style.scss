@@ -1,5 +1,10 @@
+//變數
+//每個section的上下padding
+$section-padding: 100px 0;
+$section-padding768: 60px 0;
+
 body {
-    // background-color: burlywood;
+    background-color: whitesmoke;
     overflow-y: hidden;
     // height: 10000px;
 }
@@ -144,7 +149,7 @@ html {
                 position: absolute;
                 width: 100%;
                 height: 0px;
-                top: 68px;
+                top: 74px;
                 right: 0;
 
                 transition: 1s;
@@ -207,9 +212,9 @@ html {
                 @media (max-width: 991px) {
                     padding: 70% 0 10%;
                 }
-                h1{
+                h1 {
                     font-weight: bold;
-                    &:first-child{
+                    &:first-child {
                         color: lightskyblue;
                     }
                 }
@@ -259,7 +264,10 @@ html {
 }
 
 #about_me_area {
-    padding: 100px 0;
+    padding: $section-padding;
+    @media (max-width: 768px) {
+        padding: $section-padding768;
+    }
     .container {
         .photoimg {
             img {
@@ -269,14 +277,22 @@ html {
             }
         }
         .text {
-            padding-top: 10%;
+            padding-top: 5%;
             padding-left: 10%;
             height: 300px;
+            h1 {
+                margin-bottom: 20px;
+                font-size: 30px;
+                font-weight: bold;
+            }
         }
     }
 }
 #skill_area {
-    padding: 100px 0;
+    padding: $section-padding;
+    @media (max-width: 768px) {
+        padding: $section-padding768;
+    }
     //技能條
     .progress {
         height: 7px;
@@ -390,7 +406,10 @@ html {
 }
 
 #work_area {
-    padding: 100px 0;
+    padding: $section-padding;
+    @media (max-width: 768px) {
+        padding: $section-padding768;
+    }
     .portfolio_filter {
         width: 100%;
         ul {
@@ -424,6 +443,13 @@ html {
         transition: 0.5s;
         display: block;
         transform: scale(0);
+        img{
+            height: 63%;
+        }
+        .card-title{
+            font-weight: bold;
+        }
+        
 
         &.active {
             opacity: 1;
@@ -436,7 +462,37 @@ html {
     }
 }
 #resume_area {
-    padding: 100px 0;
+    padding: $section-padding;
+    @media (max-width: 768px) {
+        padding: $section-padding768;
+    }
+    overflow: hidden;
+    .title {
+        margin-bottom: 50px;
+    }
+    .resume_title {
+        margin-bottom: 15px;
+        font-weight: bold;
+        i {
+            color: lightskyblue;
+            font-size: 30px;
+            margin-right: 15px;
+        }
+    }
+    .single_resume {
+        background: #fff;
+        padding: 35px 30px;
+        margin-bottom: 30px;
+        border-radius: 4px;
+        h3 {
+            font-weight: bold;
+        }
+        .resume-designation {
+            font-weight: 500;
+            margin-bottom: 15px;
+            display: block;
+        }
+    }
 }
 
 @keyframes slideRight {

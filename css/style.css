@@ -1,4 +1,5 @@
 body {
+  background-color: whitesmoke;
   overflow-y: hidden;
 }
 
@@ -170,7 +171,7 @@ html {
     position: absolute;
     width: 100%;
     height: 0px;
-    top: 68px;
+    top: 74px;
     right: 0;
     -webkit-transition: 1s;
     transition: 1s;
@@ -316,6 +317,12 @@ html {
   padding: 100px 0;
 }
 
+@media (max-width: 768px) {
+  #about_me_area {
+    padding: 60px 0;
+  }
+}
+
 #about_me_area .container .photoimg img {
   display: block;
   max-width: 100%;
@@ -323,13 +330,25 @@ html {
 }
 
 #about_me_area .container .text {
-  padding-top: 10%;
+  padding-top: 5%;
   padding-left: 10%;
   height: 300px;
 }
 
+#about_me_area .container .text h1 {
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
 #skill_area {
   padding: 100px 0;
+}
+
+@media (max-width: 768px) {
+  #skill_area {
+    padding: 60px 0;
+  }
 }
 
 #skill_area .progress {
@@ -457,6 +476,12 @@ html {
   padding: 100px 0;
 }
 
+@media (max-width: 768px) {
+  #work_area {
+    padding: 60px 0;
+  }
+}
+
 #work_area .portfolio_filter {
   width: 100%;
 }
@@ -499,6 +524,14 @@ html {
           transform: scale(0);
 }
 
+#work_area .card img {
+  height: 63%;
+}
+
+#work_area .card .card-title {
+  font-weight: bold;
+}
+
 #work_area .card.active {
   opacity: 1;
   -webkit-transform: scale(1);
@@ -513,6 +546,45 @@ html {
 
 #resume_area {
   padding: 100px 0;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  #resume_area {
+    padding: 60px 0;
+  }
+}
+
+#resume_area .title {
+  margin-bottom: 50px;
+}
+
+#resume_area .resume_title {
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+#resume_area .resume_title i {
+  color: lightskyblue;
+  font-size: 30px;
+  margin-right: 15px;
+}
+
+#resume_area .single_resume {
+  background: #fff;
+  padding: 35px 30px;
+  margin-bottom: 30px;
+  border-radius: 4px;
+}
+
+#resume_area .single_resume h3 {
+  font-weight: bold;
+}
+
+#resume_area .single_resume .resume-designation {
+  font-weight: 500;
+  margin-bottom: 15px;
+  display: block;
 }
 
 @-webkit-keyframes slideRight {
